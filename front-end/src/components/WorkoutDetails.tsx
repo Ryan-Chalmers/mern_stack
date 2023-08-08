@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 import { IWorkout } from "../Interfaces/workout";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 interface IProps extends HTMLAttributes<HTMLElement> {
     workout: IWorkout;
@@ -24,8 +25,8 @@ const WorkoutDetails = ({workout}: IProps)=>{
         <h4>{workout.title}</h4>
         <p><strong>Load (Kg): </strong>{workout.load}</p>
         <p><strong>Reps (Kg): </strong>{workout.reps}</p>
-        <p>{workout.createdAt}</p>
-        <span onClick={handleClick}>Delete</span>
+        <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+        <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
     </div>
     )
 }
